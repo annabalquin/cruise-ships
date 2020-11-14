@@ -1,46 +1,40 @@
 const Port = require('../src/port.js');
-const Ship = require('../src/ship.js')
+const Ship = require('../src/ship.js');
+const Itinerary = require('../src/itinerary.js');
+
+const itinerary = new Itinerary([ new Port('Dover'), new Port('Calais'), new Port('Hambourg'), new Port('Rotterdam')]);
 
 describe('Ship class', () => {
    it('can be instantiated', () => {
-      expect(new Ship()).toBeInstanceOf(Object);
+      expect(new Ship(itinerary)).toBeInstanceOf(Object);
    });
 });
 
 describe('Ship properties', () => {
-   let ship
-   let dover
+   let ship;
    beforeEach(() =>  {
-      dover = new Port('Dover');
-      ship = new Ship(dover);
-   })
+      ship = new Ship(itinerary);
+   });
 
    it('should have a current port property set to the initial port', ()  => {
-      expect(ship).toHaveProperty('currentPort', dover);
+      expect(ship).toHaveProperty('currentPort', {name: 'Dover'});
    });
 
    it('should have a passengerCount property initialised to 0', ()  => {
       expect(ship).toHaveProperty('passengerCount', 0);
    });
 
-   xit('should have a isSailing property initialised as false', ()  => {
-      expect(ship).toHaveProperty('isSailing', false);
-   });
-
-   xit('should have a dockedAt property initialised as the starting port', ()  => {
-      expect(ship).toHaveProperty('dockedAt', dover);
-   });
-
+   
    
 });
 
 describe('Ship methods', () => {
-   let ship
-   let dover
+   let ship;
+   let itinerary;
    beforeEach(() =>  {
-      dover = new Port('Dover');
-      ship = new Ship(dover);
-   })
+      itinerary = new Itinerary([ new Port('Dover'), new Port('Calais'), new Port('Hambourg'), new Port('Rotterdam')]);
+      ship = new Ship(itinerary);
+   });
 
    it('should have a boardPassengers method', () => {
       expect(ship).toHaveProperty('boardPassengers');
@@ -60,26 +54,31 @@ describe('Ship methods', () => {
    it('should have a setSail method', () => {
       expect(ship).toHaveProperty('setSail');
       expect(typeof ship.setSail).toBe('function');
-   });  
+   });    
    
-   it(`setSail should set the ship's currentPort property to null`, () => {
+   it(`setSail should set the previousPort to the same value as currentPort, 
+      and set current port to null`, () => {
       ship.setSail();
 
+      expect(ship.previousPort).toEqual(new Port('Dover'));
       expect(ship.currentPort).toBeNull();
-   });
+   }); 
 
-   it('should have a dock method that only accepts objects as its argument', () => {
+   it('should have a dock method', () => {
       expect(ship).toHaveProperty('dock');
       expect(typeof ship.dock).toBe('function');
-      expect( () => ship.dock('Calais')).toThrow('ports must be objects')
    });
    
-   it('should be able to dock at different ports', () => {
-      let calais = new Port('Calais')
-      
-      ship.dock(calais)
+   it('should dock at the next port on the itinerary ', () => {  
+      ship.setSail();
+      ship.dock();
 
-      expect(ship.currentPort).toBe(calais)
+      expect(ship.currentPort).toEqual({name: 'Calais'});
+
+      ship.setSail();
+      ship.dock();
+
+      expect(ship.currentPort).toEqual({name: 'Hambourg'});
    });
-      
+     
 });

@@ -1,19 +1,21 @@
 class Ship {
-   constructor(port) {
-    this.currentPort = port;
+   constructor(itinerary) {
+    this.itinerary = itinerary;
+    this.portCount = 0;
+    this.currentPort = this.itinerary.destinationPorts[this.portCount];
+    this.previousPort = null;
     this.passengerCount = 0;
    }
    boardPassengers(num) {
       this.passengerCount += num;
    }
    setSail() {
-     this.currentPort = null;
+      this.previousPort = this.currentPort;
+      this.currentPort = null;
+      this.portCount++
    }
-   dock(port) {
-      if (typeof port !== 'object') {
-         throw new Error('ports must be objects')
-      }
-      this.currentPort = port;
+   dock() {
+      this.currentPort = this.itinerary.destinationPorts[this.portCount];
    }
 
 }
