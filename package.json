@@ -4,7 +4,7 @@
   "description": "bootcamp project to practise oop in javascript",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "author": "Anna Balquin",
   "license": "ISC",
