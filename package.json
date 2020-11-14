@@ -1,0 +1,14 @@
+{
+  "name": "cruise-ships",
+  "version": "1.0.0",
+  "description": "bootcamp project to practise oop in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Anna Balquin",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
