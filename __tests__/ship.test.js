@@ -4,31 +4,32 @@ const Itinerary = require('../src/itinerary.js');
 
 
 
-describe('Ship class', () => {
-   let ship = new Ship(new Itinerary([new Port('Dover')]))
-   it('can be instantiated', () => {
-      expect(ship).toBeInstanceOf(Object);
-   });
-});
-
-describe('Ship properties', () => {
+describe('Ship class and properties', () => {
    let ship;
    beforeEach(() =>  {
       ship = new Ship(new Itinerary([new Port('Dover')]))
    });
 
-   it('should have a current port property set to the initial port', ()  => {
-      expect(ship).toHaveProperty('currentPort');
-      expect(ship.currentPort.name).toBe('Dover');
+   describe('Ship class', () => {
+      it('can be instantiated', () => {
+         expect(ship).toBeInstanceOf(Object);
+      });
    });
 
-   it('should have a passengerCount property initialised to 0', ()  => {
-      expect(ship).toHaveProperty('passengerCount', 0);
+   describe('Ship properties', () => {
+      it('should have a current port property set to the initial port', ()  => {
+         expect(ship).toHaveProperty('currentPort');
+         expect(ship.currentPort.name).toBe('Dover');
+      });
+
+      it('should have a passengerCount property initialised to 0', ()  => {
+         expect(ship).toHaveProperty('passengerCount', 0);
+      });
    });
-});
+})
 
 describe('Ship methods', () => {
-   let ship, dover, calais, hambourg, rotterdam, itinerary;
+   let dover, calais, hambourg, rotterdam, itinerary, ship;
     beforeEach(() =>  {
       dover = new Port('Dover');
       calais = new Port('Calais');
@@ -84,7 +85,6 @@ describe('Ship methods', () => {
    });
 
    it('should go back to the originating port after docking in the last port on the itinerary', () => {
-      
       for (let i = 0; i < itinerary.ports.length; i++) {
          ship.setSail();
          ship.dock();
@@ -97,13 +97,13 @@ describe('Ship methods', () => {
    it('should get added to port after docking', () => {
       ship.setSail();
       ship.dock();
+
       expect(ship.currentPort.ships).toContain(ship);
    });
 
    it('should get removed from port ships list after setting sail', () => {
       ship.setSail();
-      ship.dock();
-      ship.setSail();
+
       expect(ship.previousPort.ships).not.toContain(ship);
    })
      

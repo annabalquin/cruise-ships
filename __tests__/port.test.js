@@ -2,28 +2,30 @@ const Port = require('../src/port.js');
 const Ship = require('../src/ship.js');
 const Itinerary = require('../src/itinerary.js');
 
-describe('Port class', () => {
-   it('can be instantiated', () => {
-      expect(new Port()).toBeInstanceOf(Object)
-   })
-})
 
-describe('Port properties', () => {
+describe('Port class and properties', () => {
    let calais = new Port('Calais');
 
-   it('should have a name', () => {
-      expect(calais).toHaveProperty('name', 'Calais');
+   describe('Port class', () => {
+      it('can be instantiated', () => {
+         expect(calais).toBeInstanceOf(Object)
+      });
    });
 
-   it('should store an array of docked ships', () => {
-      expect(calais).toHaveProperty('ships', []);
+   describe('Port properties', () => {
+      it('should have a name', () => {
+         expect(calais).toHaveProperty('name', 'Calais');
+      });
+
+      it('should store an array of docked ships', () => {
+         expect(calais).toHaveProperty('ships', []);
+      });
    });
 });
 
+
 describe('Port methods', () => {
-   let calais;
-   let ship;
-   let itinerary;
+   let calais, itinerary, ship;
    beforeEach( () => {
       calais = new Port('Calais');
       itinerary = new Itinerary([ new Port('Dover'), calais, new Port('Hambourg'), new Port('Rotterdam')]);
@@ -32,6 +34,7 @@ describe('Port methods', () => {
 
    it('should be able to add to its ships array', () => {
       calais.addShip(ship);
+
       expect(calais.ships).toContain(ship);
    });
 
@@ -56,9 +59,4 @@ describe('Port methods', () => {
       
       expect(calais.ships).toContain(ship && dana && alice);
    });
-
-   
-
-
-  
 });
