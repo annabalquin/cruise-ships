@@ -28,8 +28,7 @@ describe('Port methods', () => {
    let calais, itinerary, ship;
    beforeEach( () => {
       calais = new Port('Calais');
-      itinerary = new Itinerary([ new Port('Dover'), calais, new Port('Hambourg'), new Port('Rotterdam')]);
-      ship = new Ship(itinerary);
+      ship = jest.fn();
    });
 
    it('should be able to add to its ships array', () => {
@@ -46,17 +45,17 @@ describe('Port methods', () => {
    });
 
    it('should be able to handle multiple ships arriving', () => {
-      let dana = new Ship(itinerary);
-      let alice = new Ship(itinerary);
+      let itinerary = new Itinerary([ new Port('Dover'), calais]);
+      let theLazyLobster = new Ship(itinerary)
+      let theMurderousMermaid = new Ship(itinerary)
 
-      ship.setSail();
-      ship.dock();
-      dana.setSail();
-      dana.dock();
-      alice.setSail();
-      alice.dock();
+   
+      theLazyLobster.setSail();
+      theLazyLobster.dock();
+      theMurderousMermaid.setSail();
+      theMurderousMermaid.dock();
      
       
-      expect(calais.ships).toContain(ship && dana && alice);
+      expect(calais.ships).toContain(theLazyLobster && theMurderousMermaid);
    });
 });
