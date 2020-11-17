@@ -13,7 +13,8 @@ describe('Itinerary properties', () => {
    let itinerary = new Itinerary([ new Port('Calais'), new Port('Hambourg'), new Port('Rotterdam')])
 
    it('has a destination ports property that has a value of an array containing a list of port objects', () => {
-     expect(itinerary).toHaveProperty('destinationPorts', 
-                                       [{name: 'Calais'}, {name: 'Hambourg'}, {name: 'Rotterdam'}]);
+     expect(itinerary).toHaveProperty('ports');
+     expect(itinerary.ports).toHaveLength(3);
+                                       
    });
 });
