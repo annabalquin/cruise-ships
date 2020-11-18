@@ -1,7 +1,4 @@
 const Port = require('../src/port.js');
-const Ship = require('../src/ship.js');
-const Itinerary = require('../src/itinerary.js');
-
 
 describe('Port class and properties', () => {
    let calais = new Port('Calais');
@@ -25,7 +22,7 @@ describe('Port class and properties', () => {
 
 
 describe('Port methods', () => {
-   let calais, itinerary, ship;
+   let calais, ship;
    beforeEach( () => {
       calais = new Port('Calais');
       ship = jest.fn();
@@ -45,17 +42,13 @@ describe('Port methods', () => {
    });
 
    it('should be able to handle multiple ships arriving', () => {
-      let itinerary = new Itinerary([ new Port('Dover'), calais]);
-      let theLazyLobster = new Ship(itinerary)
-      let theMurderousMermaid = new Ship(itinerary)
-
-   
-      theLazyLobster.setSail();
+      let itinerary = ({ports:[ new Port('Dover'), calais]});
+      let theLazyLobster = { itinerary: itinerary.ports, dock() { calais.addShip(this)} }
+      let theMurderousMermaid = { itinerary: itinerary.ports, dock() { calais.addShip(this)} }
+     
       theLazyLobster.dock();
-      theMurderousMermaid.setSail();
       theMurderousMermaid.dock();
      
-      
       expect(calais.ships).toContain(theLazyLobster && theMurderousMermaid);
    });
 });
