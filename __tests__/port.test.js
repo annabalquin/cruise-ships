@@ -38,7 +38,7 @@ describe('Port methods', () => {
       calais.addShip(ship);
       calais.removeShip(ship);
 
-      expect(calais.ships).not.toContain();
+      expect(calais.ships).not.toContain(ship);
    });
 
    it('should be able to handle multiple ships arriving', () => {

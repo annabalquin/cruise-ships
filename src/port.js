@@ -12,4 +12,4 @@ class Port {
    }
 }
 
-module.exports = Port
+module.exports = Port;
