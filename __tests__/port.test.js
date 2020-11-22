@@ -49,6 +49,7 @@ describe('Port methods', () => {
       theLazyLobster.dock();
       theMurderousMermaid.dock();
      
-      expect(calais.ships).toContain(theLazyLobster && theMurderousMermaid);
+      expect(calais.ships).toContain(theLazyLobster);
+      expect(calais.ships).toContain(theMurderousMermaid);
    });
 });

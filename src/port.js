@@ -7,7 +7,7 @@ class Port {
       this.ships.push(ship)
    }
    removeShip(ship) {
-      const index = this.ships.findIndex(element => element === ship);
+      const index = this.ships.indexOf(ship)
       this.ships.splice(index, 1);
    }
 }
