@@ -15,4 +15,29 @@ body {
    height: 256px;
    position: relative;
    overflow-x: auto;   
+   display: flex;
+   align-content: center;
+}
+
+#ports {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.port {
+   margin: 0 95px;
+   width: 64px;
+   height: 32px;
+   background-image: url('../images/port.png');
+}
+
+.ship {
+   background-image: url('../images/ship.png');
+   background-repeat: no-repeat;
+   position: absolute;
+   top: 128px;
+   /* left: 60px; */
+   width: 128px;
+   height: 64px;
 }

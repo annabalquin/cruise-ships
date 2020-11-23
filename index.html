@@ -8,13 +8,29 @@
    <title>Document</title>
 </head>
 <body>
-   <main id="viewport"></main>
+   <main id="viewport">
+      <div id="ports"></div>
+   </main>
+
    
 </body>
 <script src="./src/controller.js"></script>
 <script src="./src/port.js"></script>
+<script src="./src/itinerary.js"></script>
+<script src="./src/ship.js"></script>
 <script>  
-   const seaController = new Controller();
    
+   const itinerary = new Itinerary([ new Port('Venice'), 
+                                     new Port('Istanbul'), 
+                                     new Port('Beijing'), 
+                                     new Port('Athens'), 
+                                     new Port('Quebec City') ])
+   
+   const controller = new Controller();
+   controller.renderPorts(itinerary.ports);
+
+   const ship = new Ship(itinerary, 500);
+   controller.renderShip(ship);
+
 </script>
 </html>

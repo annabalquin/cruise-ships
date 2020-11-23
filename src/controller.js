@@ -18,6 +18,36 @@
             }
          }, 1000);
       }
+
+      renderPorts(ports) {
+        const portsContainer = document.querySelector('#ports');
+        let portsContainerWidth = 0;
+        ports.forEach((port, index) => {
+            let portDiv = document.createElement('div');
+            portDiv.classList.add('port');
+            portDiv.dataset.portName = port.name;
+            portDiv.dataset.portIndex = index;
+            portsContainer.appendChild(portDiv);
+            portsContainerWidth += 256;
+            portsContainer.width = `${portsContainerWidth}px`
+        });
+
+      }
+
+      renderShip(ship) {
+         const viewport = document.querySelector('#viewport');
+         let shipDiv = document.createElement('div');
+         shipDiv.classList.add('ship');
+         let positionLeft;
+         // ship.portsIndex = 1;
+         if (ship.portsIndex === 0) {
+            positionLeft = 60;
+         } else {
+            positionLeft = 60 + (ship.portsIndex * 256);
+         }
+         shipDiv.style.left = `${positionLeft}px`;
+         viewport.appendChild(shipDiv)
+      }
    }
 
    if (typeof module !== 'undefined' && module.exports) {
