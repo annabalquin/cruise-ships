@@ -10,7 +10,12 @@
 <body>
    <main id="viewport">
       <div id="ports"></div>
+      <div id="ship"></div>
    </main>
+   <button id="sailbutton">Set Sail!</button>
+   <div id="messagebox"></div>
+   
+  
 
    
 </body>
@@ -25,12 +30,12 @@
                                      new Port('Beijing'), 
                                      new Port('Athens'), 
                                      new Port('Quebec City') ])
-   
-   const controller = new Controller();
-   controller.renderPorts(itinerary.ports);
-
    const ship = new Ship(itinerary, 500);
-   controller.renderShip(ship);
+   const controller = new Controller(ship);
+   controller.renderPorts();
+   controller.renderShip();
+
+   
 
 </script>
 </html>

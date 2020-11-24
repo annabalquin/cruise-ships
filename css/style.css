@@ -1,20 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap');
+
 html, body {
    height: 100%;
 }
+/* ::-webkit-scrollbar {
+   width: 0;
+} */
 
 body {
    background-color: black;
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
 }
 
 #viewport {
    background-image: url('../images/water0.png');
-   width: 640px;
+   width: 820px;
    height: 256px;
    position: relative;
    overflow-x: auto;   
+   overflow-y: hidden;
    display: flex;
    align-content: center;
 }
@@ -36,8 +43,38 @@ body {
    background-image: url('../images/ship.png');
    background-repeat: no-repeat;
    position: absolute;
-   top: 128px;
-   /* left: 60px; */
+   top: 132px;
+   left: 60px;
    width: 128px;
    height: 64px;
+   transition: left 4s ease;
+}
+
+#sailbutton {
+   width: 820px;
+   height: 34px;
+   border-bottom: 4px solid #d8040f;
+   outline: none;
+   background-color: #FB3640;
+   font-family: 'Nova Mono', monospace;
+   text-align: center;
+   color: white;
+   font-size: 24px;
+   letter-spacing: 3px;
+   text-transform: uppercase;
+}
+#sailbutton:active{
+  background-color: #08AAD9;
+  border-bottom: 4px solid #08A1D9
+}
+
+#messagebox {
+
+   width: 810px;
+   height: 96px;
+   background-color: lightgray;
+   margin-top: 45px;
+   border: solid 3px black;
+   /* display: none; */
+
 }
