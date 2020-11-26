@@ -6,13 +6,15 @@
          this.initializeSea();
 
          document.querySelector('#sailbutton').addEventListener('click', () => this.setSail());
+         document.querySelector('#returnbutton').addEventListener('click', () => this.returnShipToStart());
+         
       }
 
+      
       
 
       initializeSea() {
          const viewport = document.querySelector('#viewport');
-         console.log(viewport.offsetTop, 'left', viewport.offsetLeft)
          const backgrounds = ["url('./images/water0.png')", "url('./images/water1.png')"];
          let currentImg = 0;
          setInterval( () => {
@@ -28,6 +30,11 @@
 
       renderPorts() {
         const portsContainer = document.querySelector('#ports');
+        if (portsContainer.hasChildNodes()){ 
+         while (portsContainer.firstChild) {
+            portsContainer.removeChild(portsContainer.firstChild)
+         }
+      }
         let portsContainerWidth = 0;
         this.ship.itinerary.ports.forEach((port, index) => {
             let portDiv = document.createElement('div');
@@ -37,7 +44,6 @@
             portsContainer.appendChild(portDiv);
             portsContainerWidth += 256;
             portsContainer.width = `${portsContainerWidth}px`
-         
         });
 
       }
@@ -52,17 +58,61 @@
       }
 
       setSail() {
-            if (this.ship.portsIndex === this.ship.itinerary.ports.length-1) {
-               alert('End of line! Please disembark. Have a nice day. Ship is now reversing beeep beeep beeep')
-            }
+        
+         if (this.ship.portsIndex === this.ship.itinerary.ports.length-1) {
+            this.renderMessage('End of line! Please disembark. Have a nice day')
+            setTimeout(() => {
+              const returnButton =  document.querySelector('#returnbutton');
+              returnButton.style.display = 'block';
+            }, 2000);
+         } else {
             this.ship.setSail();
-            this.ship.dock();
+            this.renderMessage(`Now departing ${this.ship.previousPort.name}`)
+            this.ship.dock();       
             const shipDiv = document.querySelector('#ship');
+            setTimeout(() => {
+               this.renderMessage(`Now arriving in ${this.ship.currentPort.name}`);
+               this.renderHUD();
+            }, 3000)
             shipDiv.style.left = `${60 + (this.ship.portsIndex * 256)}px`;
-         }
-
+         }    
       }
-   
+
+      returnShipToStart() {
+         document.querySelector('#ship').style.left = `60px`;
+         this.ship.setSail();
+         this.ship.dock();
+         setTimeout(() => {
+            const returnButton =  document.querySelector('#returnbutton');
+            returnButton.style.display = 'none';
+         }, 3000);
+      }
+
+      renderMessage(message) {
+         const messagebox = document.querySelector('#messagebox');
+         messagebox.style.display = 'block';
+         messagebox.innerHTML = message;
+         setTimeout(() => {
+            messagebox.style.display = 'none';
+         }, 3000);
+      }
+
+      renderHUD() {
+         const hud = document.querySelector('#hud');
+         
+         if (hud.hasChildNodes()){ 
+            while (hud.firstChild) {
+               hud.removeChild(hud.firstChild)
+            }
+         }
+         const current = document.createElement('div')
+         current.innerHTML = `Current Port: ${this.ship.currentPort.name}`
+         const next = document.createElement('div');
+         next.innerHTML = `Next Port: ${this.ship.itinerary.ports[this.ship.portsIndex+1].name}`
+         hud.appendChild(current)
+         hud.appendChild(next)
+      }
+   }
 
    if (typeof module !== 'undefined' && module.exports) {
       module.exports = Controller;

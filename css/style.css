@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 html, body {
    height: 100%;
@@ -13,6 +14,7 @@ body {
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   font-family: 'Press Start 2P', cursive;
 }
 
 #viewport {
@@ -22,11 +24,11 @@ body {
    position: relative;
    overflow-x: auto;   
    overflow-y: hidden;
-   display: flex;
-   align-content: center;
 }
 
 #ports {
+   position: absolute;
+   top: 100px;
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -47,34 +49,105 @@ body {
    left: 60px;
    width: 128px;
    height: 64px;
-   transition: left 4s ease;
+   transition: left 5s ease;
 }
 
-#sailbutton {
-   width: 820px;
-   height: 34px;
+#sailbutton, #returnbutton {
+   top: 250px;
+   left: 0;
+   position: sticky;
+   width: 100%;
+   height: 36px;
+   border: none;
    border-bottom: 4px solid #d8040f;
-   outline: none;
+   outline-style: none;
+   padding-top: 5px;
    background-color: #FB3640;
-   font-family: 'Nova Mono', monospace;
    text-align: center;
    color: white;
-   font-size: 24px;
+   font-size: 22px;
    letter-spacing: 3px;
    text-transform: uppercase;
 }
-#sailbutton:active{
-  background-color: #08AAD9;
-  border-bottom: 4px solid #08A1D9
+#sailbutton:active {
+  background-color: #d8040f;
+  /* border-bottom: 4px solid #d8040f; */
 }
 
+#returnbutton {
+   width: 820px;
+   margin-top: 0px;
+   display: none;
+   background-color: #08a8d9;
+   border-bottom: 4px solid #0373eb;
+}
+
+#returnbutton:active {
+   background-color: #0373eb;
+}
+
+
 #messagebox {
+   border-top: solid 4px black;
+   width: 100%;
+   height: 36px;
+   background-color: rgb(255, 255, 255);
+   margin-top: 20px;
+   position: sticky;
+   top: 250px;
+   left: 0;
+   top: 250px;
+   box-sizing: border-box;
+   padding: 10px;
+   display: none;
+}
 
-   width: 810px;
-   height: 96px;
-   background-color: lightgray;
-   margin-top: 45px;
-   border: solid 3px black;
-   /* display: none; */
+#hud {
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   color: white;
+   text-align: right;
+}
 
+#hud div {
+   margin-top: 20px;
+}
+
+form {
+   position: absolute;
+   top: 20px;
+   left: 20px;
+   /* min-height: 150px; */
+   border: solid 5px white;
+   border-top-width: 3px;
+   border-bottom-width: 3px;
+   box-shadow: 
+               /* 2px 3px 0px inset #d8040f,
+               -2px -3px 0px inset #d8040f,    */
+               -8px -6px 0px #d8040f;
+              
+   background-color: white;
+   padding: 5px;
+   display: flex;
+   flex-direction: column;
+
+}
+
+form * {
+   margin: 8px;
+}
+
+form > button {
+   width: 80px;
+   height: 28px;
+   background-color: #FB3640;
+   color: white;
+   outline: none;
+   border-bottom: 2px solid #d8040f;
+   
+}
+
+form > input {
+   height: 28px;
 }

@@ -8,12 +8,20 @@
    <title>Document</title>
 </head>
 <body>
-   <main id="viewport">
+   <form id="add-ports-form">
+      <label for="port-input">Add Port </label>
+      <input type="text" id="port-input" placeholder="Port Name">
+      <button type="submit" id="submit">Add</button>
+   </form>
+   <div id="hud"></div>
+   <div id="viewport">
       <div id="ports"></div>
-      <div id="ship"></div>
-   </main>
-   <button id="sailbutton">Set Sail!</button>
-   <div id="messagebox"></div>
+      <div id="ship"></div>    
+      <button id="sailbutton">Set Sail!</button>
+      <div id="messagebox"></div>
+   </div>
+   <button id="returnbutton">Return to start</button>
+
    
   
 
@@ -25,16 +33,23 @@
 <script src="./src/ship.js"></script>
 <script>  
    
-   const itinerary = new Itinerary([ new Port('Venice'), 
-                                     new Port('Istanbul'), 
-                                     new Port('Beijing'), 
-                                     new Port('Athens'), 
-                                     new Port('Quebec City') ])
+   const itinerary = new Itinerary([])
    const ship = new Ship(itinerary, 500);
    const controller = new Controller(ship);
-   controller.renderPorts();
    controller.renderShip();
 
+   document.querySelector('#add-ports-form').addEventListener('submit', () => {
+         event.preventDefault();
+         const portInput = document.querySelector('#port-input').value;
+         const port = new Port(portInput);
+         controller.ship.itinerary.ports.push(port);
+         console.log(controller.ship.itinerary);
+         controller.renderPorts();
+   });
+
+
+  
+   
    
 
 </script>
