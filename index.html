@@ -21,11 +21,6 @@
       <div id="messagebox"></div>
    </div>
    <button id="returnbutton">Return to start</button>
-
-   
-  
-
-   
 </body>
 <script src="./src/controller.js"></script>
 <script src="./src/port.js"></script>
@@ -45,12 +40,10 @@
          controller.ship.itinerary.ports.push(port);
          console.log(controller.ship.itinerary);
          controller.renderPorts();
+         controller.ship.dock();
+         controller.renderHUD();
+         document.querySelector('#port-input').value = "";
    });
-
-
-  
-   
-   
 
 </script>
 </html>

@@ -7,11 +7,7 @@
 
          document.querySelector('#sailbutton').addEventListener('click', () => this.setSail());
          document.querySelector('#returnbutton').addEventListener('click', () => this.returnShipToStart());
-         
       }
-
-      
-      
 
       initializeSea() {
          const viewport = document.querySelector('#viewport');
@@ -58,12 +54,21 @@
       }
 
       setSail() {
+         if (!this.ship.itinerary.ports.length) {
+            return this.renderMessage('No ports! Please set some ports before sailing.');
+         }
+
+         if (this.ship.itinerary.ports.length ===  1) {
+            return this.renderMessage('Add at least 1 more port for us to sail to!');
+         }
         
          if (this.ship.portsIndex === this.ship.itinerary.ports.length-1) {
-            this.renderMessage('End of line! Please disembark. Have a nice day')
+            this.renderMessage('End of line! Please disembark. Have a nice day!')
             setTimeout(() => {
               const returnButton =  document.querySelector('#returnbutton');
               returnButton.style.display = 'block';
+              document.querySelector('#sailbutton').style.display = 'none';
+
             }, 2000);
          } else {
             this.ship.setSail();
@@ -85,6 +90,7 @@
          setTimeout(() => {
             const returnButton =  document.querySelector('#returnbutton');
             returnButton.style.display = 'none';
+            document.querySelector('#sailbutton').style.display = 'block';
          }, 3000);
       }
 
@@ -99,18 +105,22 @@
 
       renderHUD() {
          const hud = document.querySelector('#hud');
-         
          if (hud.hasChildNodes()){ 
             while (hud.firstChild) {
                hud.removeChild(hud.firstChild)
             }
          }
          const current = document.createElement('div')
-         current.innerHTML = `Current Port: ${this.ship.currentPort.name}`
-         const next = document.createElement('div');
-         next.innerHTML = `Next Port: ${this.ship.itinerary.ports[this.ship.portsIndex+1].name}`
-         hud.appendChild(current)
-         hud.appendChild(next)
+         current.innerHTML = `Current Port: ${this.ship.currentPort.name}`;
+         hud.appendChild(current);
+        
+         if (this.ship.itinerary.ports[this.ship.portsIndex+1]) {
+            const next = document.createElement('div');
+            next.innerHTML = `Next Port: ${this.ship.itinerary.ports[this.ship.portsIndex+1].name}`;
+            hud.appendChild(next);
+         }
+         
+         
       }
    }
 

@@ -77,9 +77,11 @@ body {
 #returnbutton {
    width: 820px;
    margin-top: 0px;
+  
    display: none;
    background-color: #08a8d9;
-   border-bottom: 4px solid #0373eb;
+   border-top: 3px solid #0373eb;
+   border-bottom: 3px solid #0373eb;
 }
 
 #returnbutton:active {
