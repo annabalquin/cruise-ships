@@ -4,9 +4,6 @@
 html, body {
    height: 100%;
 }
-/* ::-webkit-scrollbar {
-   width: 0;
-} */
 
 body {
    background-color: black;
@@ -20,7 +17,7 @@ body {
 #viewport {
    background-image: url('../images/water0.png');
    width: 820px;
-   height: 256px;
+   height: 300px;
    position: relative;
    overflow-x: auto;   
    overflow-y: hidden;
@@ -28,7 +25,7 @@ body {
 
 #ports {
    position: absolute;
-   top: 100px;
+   top: 125px;
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -45,15 +42,15 @@ body {
    background-image: url('../images/ship.png');
    background-repeat: no-repeat;
    position: absolute;
-   top: 132px;
+   top: 155px;
    left: 60px;
    width: 128px;
    height: 64px;
    transition: left 5s ease;
 }
 
-#sailbutton, #returnbutton {
-   top: 250px;
+#sail-button, #return-button, #clear-ports-button {
+   top: 286px;
    left: 0;
    position: sticky;
    width: 100%;
@@ -69,22 +66,20 @@ body {
    letter-spacing: 3px;
    text-transform: uppercase;
 }
-#sailbutton:active {
+#sail-button:active {
   background-color: #d8040f;
-  /* border-bottom: 4px solid #d8040f; */
 }
 
-#returnbutton {
+#return-button {
    width: 820px;
    margin-top: 0px;
-  
    display: none;
    background-color: #08a8d9;
    border-top: 3px solid #0373eb;
    border-bottom: 3px solid #0373eb;
 }
 
-#returnbutton:active {
+#return-button:active {
    background-color: #0373eb;
 }
 
@@ -92,13 +87,12 @@ body {
 #messagebox {
    border-top: solid 4px black;
    width: 100%;
-   height: 36px;
+   height: 42px;
    background-color: rgb(255, 255, 255);
    margin-top: 20px;
    position: sticky;
-   top: 250px;
+   top: 286px;
    left: 0;
-   top: 250px;
    box-sizing: border-box;
    padding: 10px;
    display: none;
@@ -119,16 +113,10 @@ body {
 form {
    position: absolute;
    top: 20px;
-   left: 20px;
-   /* min-height: 150px; */
-   border: solid 5px white;
-   border-top-width: 3px;
-   border-bottom-width: 3px;
-   box-shadow: 
-               /* 2px 3px 0px inset #d8040f,
-               -2px -3px 0px inset #d8040f,    */
-               -8px -6px 0px #d8040f;
-              
+   left: 20px; 
+   border-bottom: solid 3px #d8040f;
+   border-right: solid 3px #d8040f;
+   box-shadow: -4px -3px 0px #d8040f;   
    background-color: white;
    padding: 5px;
    display: flex;
@@ -153,3 +141,15 @@ form > button {
 form > input {
    height: 28px;
 }
+
+#clear-ports-button{
+   width: auto;
+   font-size: 0.7rem;
+   position: absolute;
+   left: 20px;
+   top: 180px;
+}
+
+#clear-ports-button:active {
+   background-color: #d8040f;
+ }
