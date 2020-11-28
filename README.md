@@ -49,6 +49,7 @@ I practised...
 - [x] ES6 Classes
 - [x] writing guard clauses for methods that take user input
 - [x] DOM manipulation
+- [x] Using form input data
 - [x] debugging
 <br><br>
 
