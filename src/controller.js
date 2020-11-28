@@ -41,13 +41,13 @@
         let portsContainerWidth = 0;
         if(this.ship.itinerary.ports.length > 0){
             this.ship.itinerary.ports.forEach((port, index) => {
-                  let portDiv = document.createElement('div');
-                  portDiv.classList.add('port');
-                  portDiv.dataset.portName = port.name;
-                  portDiv.dataset.portIndex = index;
-                  portsContainer.appendChild(portDiv);
-                  portsContainerWidth += 256;
-                  portsContainer.width = `${portsContainerWidth}px`;
+               let portDiv = document.createElement('div');
+               portDiv.classList.add('port');
+               portDiv.dataset.portName = port.name;
+               portDiv.dataset.portIndex = index;
+               portsContainer.appendChild(portDiv);
+               portsContainerWidth += 256;
+               portsContainer.width = `${portsContainerWidth}px`;
             });
          }
 
