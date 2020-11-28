@@ -13,6 +13,7 @@ As a user, you can:
 
 <br>
 
+
 ## My approach to the exercise
 
 The material from Manchester Codes is structured by first setting the aim for the current task, then listing some steps needed to complete it, and finally presenting a walkthrough of the code. 
@@ -65,15 +66,9 @@ I practised...
 - [x] using absolute & sticky positioning
 <br><br>
 
-
-## What I'd like to learn more about...
-- [ ] dependency injection
-- [ ] sharing information between objects
-- [ ] creating animations
-- [ ] effective testing
-
-
 ***
+
+See it live on [GitHub pages](https://anna-m-b.github.io/cruise-ships/)
 
 
 ## Authors 
