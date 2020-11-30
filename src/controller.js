@@ -46,8 +46,7 @@
                portDiv.dataset.portName = port.name;
                portDiv.dataset.portIndex = index;
                portsContainer.appendChild(portDiv);
-               portsContainerWidth += 256;
-               portsContainer.width = `${portsContainerWidth}px`;
+               portsContainer.width = `${portsContainerWidth + 256}px`;
             });
          }
 
